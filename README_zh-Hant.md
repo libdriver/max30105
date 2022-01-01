@@ -112,6 +112,8 @@ uint8_t max30105_receive_callback(uint8_t type)
     return 0;
 }
 
+...
+    
 /* get times */
 times = 3;
 cnt = times;
@@ -136,6 +138,8 @@ if (res)
     return 1;
 }
 
+...
+    
 /* read data */
 gs_flag = 0;
 timeout = 5000;
@@ -169,6 +173,8 @@ if (timeout == 0)
     return 1;
 }
 
+...
+    
 max30105_fifo_deinit();
 gpio_interrupt_deinit();
 g_gpio_irq = NULL;

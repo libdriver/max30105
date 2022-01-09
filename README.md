@@ -1,10 +1,12 @@
+[English](/README.md) | [ 简体中文](/README_zh-Hans.md) | [繁體中文](/README_zh-Hant.md)
+
 <div align=center>
 <img src="/doc/image/logo.png"/>
 </div>
 
 ## LibDriver MAX30105
 
-[English](/README.md) | [ 简体中文](/README_zh-Hans.md) | [繁體中文](/README_zh-Hant.md)
+[![API](https://img.shields.io/badge/api-reference-blue)](https://www.libdriver.com/docs/max30105/index.html) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](/LICENSE)
 
 The MAX30105 is an integrated particle-sensing module.It includes internal LEDs, photodetectors, optical elements and low-noise electronics with ambient light rejection. The MAX30105 provides a complete system solution to ease the design-in process of smoke detection applications including fire alarms. Due to its extremely small size, the MAX30105 can also be used as a smoke detection sensor for mobile and wearable devices.The MAX30105 operates on a single 1.8V power supply and a separate 5.0V power supply for the internal LEDs.It communicates through a standard I2C-compatible interface.The module can be shut down through software with zero standby current, allowing the power rails to remain powered at all times.It can be used in fire alarms, smoke detectors for building automation, smoke detectors for mobile devices, smoke detectors for wearable devices and so on.
 

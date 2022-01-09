@@ -1,10 +1,12 @@
+[English](/README.md) | [ 简体中文](/README_zh-Hans.md) | [繁體中文](/README_zh-Hant.md)
+
 <div align=center>
 <img src="/doc/image/logo.png"/>
 </div>
 
 ## LibDriver MAX30105
 
-[English](/README.md) | [ 简体中文](/README_zh-Hans.md) | [繁體中文](/README_zh-Hant.md)
+[![API](https://img.shields.io/badge/api-reference-blue)](https://www.libdriver.com/docs/max30105/index.html) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](/LICENSE)
 
 MAX30105為集成粒子檢測模塊。包括內部LED、光電檢測器、光元件，以及帶環境光抑制的低噪聲電子電路。 MAX30105提供完備的系統方案，簡化消防報警燈煙霧檢測應用的設計過程。得益於極小的尺寸，MAX30105也可用作移動和可穿戴設備的煙霧檢測傳感器。 MAX30105採用1.8V單電源工作，獨立的5.0V電源用於內部LED，器件通過標準I2C兼容接口通信。可通過軟件關斷模塊，待機電流為零，允許電源軌在全部時間保持供電。MAX30105可用於菸霧報警器，樓宇自動化煙霧檢測器，移動設備煙霧檢測器和移動設備煙霧檢測器等。
 

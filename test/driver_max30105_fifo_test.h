@@ -55,7 +55,7 @@ extern "C"{
  *         - 1 run failed
  * @note   none
  */
-uint8_t max30105_interface_fifo_test_irq_handler(void);
+uint8_t max30105_fifo_test_irq_handler(void);
 
 /**
  * @brief     fifo test

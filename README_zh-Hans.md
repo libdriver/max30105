@@ -121,7 +121,7 @@ times = 3;
 cnt = times;
                 
 /* set gpio */
-g_gpio_irq = max30105_interface_fifo_irq_handler;
+g_gpio_irq = max30105_fifo_irq_handler;
 res = gpio_interrupt_init();
 if (res)
 {

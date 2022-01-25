@@ -225,7 +225,7 @@ uint8_t max30105(uint8_t argc, char **argv)
                 volatile uint8_t res;
                 
                 /* set gpio */
-                g_gpio_irq = max30105_interface_fifo_test_irq_handler;
+                g_gpio_irq = max30105_fifo_test_irq_handler;
                 res = gpio_interrupt_init();
                 if (res)
                 {
@@ -270,7 +270,7 @@ uint8_t max30105(uint8_t argc, char **argv)
                 cnt = times;
                 
                 /* set gpio */
-                g_gpio_irq = max30105_interface_fifo_irq_handler;
+                g_gpio_irq = max30105_fifo_irq_handler;
                 res = gpio_interrupt_init();
                 if (res)
                 {

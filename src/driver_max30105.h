@@ -34,8 +34,8 @@
  * </table>
  */
 
-#ifndef _DRIVER_MAX30105_H_
-#define _DRIVER_MAX30105_H_
+#ifndef DRIVER_MAX30105_H
+#define DRIVER_MAX30105_H
 
 #include <stdio.h>
 #include <stdint.h>
@@ -184,9 +184,9 @@ typedef struct max30105_handle_s
     uint8_t (*iic_deinit)(void);                                                        /**< point to a iic_deinit function address */
     uint8_t (*iic_read)(uint8_t addr, uint8_t reg, uint8_t *buf, uint16_t len);         /**< point to a iic_read function address */
     uint8_t (*iic_write)(uint8_t addr, uint8_t reg, uint8_t *buf, uint16_t len);        /**< point to a iic_write function address */
-    uint8_t (*receive_callback)(uint8_t type);                                          /**< point to a receive_callback function address */
+    void (*receive_callback)(uint8_t type);                                             /**< point to a receive_callback function address */
     void (*delay_ms)(uint32_t ms);                                                      /**< point to a delay_ms function address */
-    uint16_t (*debug_print)(char *fmt, ...);                                            /**< point to a debug_print function address */
+    void (*debug_print)(const char *const fmt, ...);                                    /**< point to a debug_print function address */
     uint8_t inited;                                                                     /**< inited flag */
     uint8_t finished_flag;                                                              /**< finished flag */
     uint16_t raw;                                                                       /**< raw */
@@ -395,7 +395,7 @@ uint8_t max30105_get_interrupt_status(max30105_handle_t *handle, max30105_interr
 /**
  * @brief     set the interrupt bool
  * @param[in] *handle points to a max30105 handle structure
- * @param[in] interrupt is the interrupt type
+ * @param[in] type is the interrupt type
  * @param[in] enable is a bool value
  * @return    status code
  *            - 0 success
@@ -404,12 +404,12 @@ uint8_t max30105_get_interrupt_status(max30105_handle_t *handle, max30105_interr
  *            - 3 handle is not initialized
  * @note      none
  */
-uint8_t max30105_set_interrupt(max30105_handle_t *handle, max30105_interrupt_t interrupt, max30105_bool_t enable);
+uint8_t max30105_set_interrupt(max30105_handle_t *handle, max30105_interrupt_t type, max30105_bool_t enable);
 
 /**
  * @brief      get the interrupt bool
  * @param[in]  *handle points to a max30105 handle structure
- * @param[in]  interrupt is the interrupt type
+ * @param[in]  type is the interrupt type
  * @param[out] *enable points to a bool value buffer
  * @return     status code
  *             - 0 success
@@ -418,7 +418,7 @@ uint8_t max30105_set_interrupt(max30105_handle_t *handle, max30105_interrupt_t i
  *             - 3 handle is not initialized
  * @note       none
  */
-uint8_t max30105_get_interrupt(max30105_handle_t *handle, max30105_interrupt_t interrupt, max30105_bool_t *enable);
+uint8_t max30105_get_interrupt(max30105_handle_t *handle, max30105_interrupt_t type, max30105_bool_t *enable);
 
 /**
  * @brief     set the fifo write pointer

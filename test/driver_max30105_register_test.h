@@ -34,8 +34,8 @@
  * </table>
  */
 
-#ifndef _DRIVER_MAX30105_REGISTER_TEST_H_
-#define _DRIVER_MAX30105_REGISTER_TEST_H_
+#ifndef DRIVER_MAX30105_REGISTER_TEST_H
+#define DRIVER_MAX30105_REGISTER_TEST_H
 
 #include "driver_max30105_interface.h"
 

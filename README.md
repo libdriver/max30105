@@ -1,4 +1,4 @@
-[English](/README.md) | [ 简体中文](/README_zh-Hans.md) | [繁體中文](/README_zh-Hant.md)
+[English](/README.md) | [ 简体中文](/README_zh-Hans.md) | [繁體中文](/README_zh-Hant.md) | [日本語](/README_ja.md) | [Deutsch](/README_de.md) | [한국어](/README_ko.md)
 
 <div align=center>
 <img src="/doc/image/logo.png"/>
@@ -6,11 +6,11 @@
 
 ## LibDriver MAX30105
 
-[![API](https://img.shields.io/badge/api-reference-blue)](https://www.libdriver.com/docs/max30105/index.html) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](/LICENSE)
+[![MISRA](https://img.shields.io/badge/misra-compliant-brightgreen.svg)](/misra/README.md) [![API](https://img.shields.io/badge/api-reference-blue.svg)](https://www.libdriver.com/docs/max30105/index.html) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](/LICENSE)
 
 The MAX30105 is an integrated particle-sensing module.It includes internal LEDs, photodetectors, optical elements and low-noise electronics with ambient light rejection. The MAX30105 provides a complete system solution to ease the design-in process of smoke detection applications including fire alarms. Due to its extremely small size, the MAX30105 can also be used as a smoke detection sensor for mobile and wearable devices.The MAX30105 operates on a single 1.8V power supply and a separate 5.0V power supply for the internal LEDs.It communicates through a standard I2C-compatible interface.The module can be shut down through software with zero standby current, allowing the power rails to remain powered at all times.It can be used in fire alarms, smoke detectors for building automation, smoke detectors for mobile devices, smoke detectors for wearable devices and so on.
 
-LibDriver MAX30105 is the full function driver of MAX30105 launched by LibDriver. It provides fifo reading, id reading and other functions.
+LibDriver MAX30105 is the full function driver of MAX30105 launched by LibDriver. It provides fifo reading, id reading and other functions. LibDriver is MISRA compliant.
 
 ### Table of Contents
 
@@ -50,23 +50,29 @@ Add /src, /interface and /example to your project.
 #### example fifo
 
 ```C
-volatile uint8_t res;
-volatile uint32_t timeout;
-volatile uint32_t cnt, times;
+static uint32_t gs_raw_red[32];
+static uint32_t gs_raw_ir[32];
+static uint32_t gs_raw_green[32];
+uint8_t res;
+uint32_t timeout;
+uint32_t cnt, times;
+uint8_t (*g_gpio_irq)(void) = NULL;
 
-uint8_t max30105_receive_callback(uint8_t type)
+...
+    
+void max30105_receive_callback(uint8_t type)
 {
     switch (type)
     {
         case MAX30105_INTERRUPT_STATUS_FIFO_FULL :
         {
-            volatile uint8_t res;
-            volatile uint8_t len;
+            uint8_t res;
+            uint8_t len;
             
             /* read data */
             len = 32;
             res = max30105_fifo_read((uint32_t *)gs_raw_red, (uint32_t *)gs_raw_ir, (uint32_t *)gs_raw_green, (uint8_t *)&len);
-            if (res)
+            if (res != 0)
             {
                 max30105_interface_debug_print("max30105: read failed.\n");
             }
@@ -107,11 +113,11 @@ uint8_t max30105_receive_callback(uint8_t type)
         }
         default :
         {
+            max30105_interface_debug_print("max30105: unknown code.\n");
+            
             break;
         }
     }
-    
-    return 0;
 }
 
 ...
@@ -123,7 +129,7 @@ cnt = times;
 /* set gpio */
 g_gpio_irq = max30105_fifo_irq_handler;
 res = gpio_interrupt_init();
-if (res)
+if (res != 0)
 {
     g_gpio_irq = NULL;
 
@@ -132,9 +138,9 @@ if (res)
 
 /* fifo init */
 res = max30105_fifo_init(max30105_receive_callback);
-if (res)
+if (res != 0)
 {
-    gpio_interrupt_deinit();
+    (void)gpio_interrupt_deinit();
     g_gpio_irq = NULL;
 
     return 1;
@@ -145,9 +151,9 @@ if (res)
 /* read data */
 gs_flag = 0;
 timeout = 5000;
-while (timeout)
+while (timeout != 0)
 {
-    if (gs_flag)
+    if (gs_flag != 0)
     {
         max30105_interface_debug_print("max30105: %d/%d.\n", cnt - times + 1, cnt);
 
@@ -168,8 +174,8 @@ while (timeout)
 if (timeout == 0)
 {
     max30105_interface_debug_print("max30105: read timeout failed.\n");
-    max30105_fifo_deinit();
-    gpio_interrupt_deinit();
+    (void)max30105_fifo_deinit();
+    (void)gpio_interrupt_deinit();
     g_gpio_irq = NULL;
 
     return 1;
@@ -177,8 +183,8 @@ if (timeout == 0)
 
 ...
     
-max30105_fifo_deinit();
-gpio_interrupt_deinit();
+(void)max30105_fifo_deinit();
+(void)gpio_interrupt_deinit();
 g_gpio_irq = NULL;
 
 return 0;

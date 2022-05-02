@@ -83,24 +83,21 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 /**
  * @brief     interface receive callback
  * @param[in] type is the irq type
- * @return    status code
- *            - 0 success
- *            - 1 run failed
  * @note      none
  */
-uint8_t max30105_receive_callback(uint8_t type)
+void max30105_receive_callback(uint8_t type)
 {
     switch (type)
     {
         case MAX30105_INTERRUPT_STATUS_FIFO_FULL :
         {
-            volatile uint8_t res;
-            volatile uint8_t len;
+            uint8_t res;
+            uint8_t len;
             
             /* read data */
             len = 32;
             res = max30105_fifo_read((uint32_t *)gs_raw_red, (uint32_t *)gs_raw_ir, (uint32_t *)gs_raw_green, (uint8_t *)&len);
-            if (res)
+            if (res != 0)
             {
                 max30105_interface_debug_print("max30105: read failed.\n");
             }
@@ -141,11 +138,11 @@ uint8_t max30105_receive_callback(uint8_t type)
         }
         default :
         {
+            max30105_interface_debug_print("max30105: unknown code.\n");
+            
             break;
         }
     }
-    
-    return 0;
 }
 
 /**
@@ -221,10 +218,10 @@ uint8_t max30105(uint8_t argc, char **argv)
             /* reg test */
             if (strcmp("reg", argv[2]) == 0)
             {
-                volatile uint8_t res;
+                uint8_t res;
                 
                 res = max30105_register_test();
-                if (res)
+                if (res != 0)
                 {
                     return 1;
                 }
@@ -253,12 +250,12 @@ uint8_t max30105(uint8_t argc, char **argv)
             /* reg test */
             if (strcmp("fifo", argv[2]) == 0)
             {
-                volatile uint8_t res;
+                uint8_t res;
                 
                 /* set gpio */
                 g_gpio_irq = max30105_fifo_test_irq_handler;
                 res = gpio_interrupt_init();
-                if (res)
+                if (res != 0)
                 {
                     g_gpio_irq = NULL;
                     
@@ -266,16 +263,16 @@ uint8_t max30105(uint8_t argc, char **argv)
                 }
                 
                 res = max30105_fifo_test(atoi(argv[3]));
-                if (res)
+                if (res != 0)
                 {
-                    gpio_interrupt_deinit();
+                    (void)gpio_interrupt_deinit();
                     g_gpio_irq = NULL;
                     
                     return 1;
                 }
                 else
                 {
-                    gpio_interrupt_deinit();
+                    (void)gpio_interrupt_deinit();
                     g_gpio_irq = NULL;
                     
                     return 0;
@@ -292,9 +289,9 @@ uint8_t max30105(uint8_t argc, char **argv)
             /* reg test */
             if (strcmp("fifo", argv[2]) == 0)
             {
-                volatile uint8_t res;
-                volatile uint32_t timeout;
-                volatile uint32_t cnt, times;
+                uint8_t res;
+                uint32_t timeout;
+                uint32_t cnt, times;
                 
                 /* get times */
                 times = atoi(argv[3]);
@@ -303,7 +300,7 @@ uint8_t max30105(uint8_t argc, char **argv)
                 /* set gpio */
                 g_gpio_irq = max30105_fifo_irq_handler;
                 res = gpio_interrupt_init();
-                if (res)
+                if (res != 0)
                 {
                     g_gpio_irq = NULL;
                     
@@ -312,9 +309,9 @@ uint8_t max30105(uint8_t argc, char **argv)
                 
                 /* fifo init */
                 res = max30105_fifo_init(max30105_receive_callback);
-                if (res)
+                if (res != 0)
                 {
-                    gpio_interrupt_deinit();
+                    (void)gpio_interrupt_deinit();
                     g_gpio_irq = NULL;
                     
                     return 1;
@@ -323,9 +320,9 @@ uint8_t max30105(uint8_t argc, char **argv)
                 /* read data */
                 gs_flag = 0;
                 timeout = 5000;
-                while (timeout)
+                while (timeout != 0)
                 {
-                    if (gs_flag)
+                    if (gs_flag != 0)
                     {
                         max30105_interface_debug_print("max30105: %d/%d.\n", cnt - times + 1, cnt);
                         
@@ -346,15 +343,15 @@ uint8_t max30105(uint8_t argc, char **argv)
                 if (timeout == 0)
                 {
                     max30105_interface_debug_print("max30105: read timeout failed.\n");
-                    max30105_fifo_deinit();
-                    gpio_interrupt_deinit();
+                    (void)max30105_fifo_deinit();
+                    (void)gpio_interrupt_deinit();
                     g_gpio_irq = NULL;
                    
                     return 1;
                 }
                 
-                max30105_fifo_deinit();
-                gpio_interrupt_deinit();
+                (void)max30105_fifo_deinit();
+                (void)gpio_interrupt_deinit();
                 g_gpio_irq = NULL;
                 
                 return 0;
@@ -384,7 +381,7 @@ uint8_t max30105(uint8_t argc, char **argv)
  */
 int main(void)
 {
-    volatile uint8_t res;
+    uint8_t res;
     
     /* stm32f407 clock init and hal init */
     clock_init();

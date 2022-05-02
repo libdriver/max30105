@@ -48,17 +48,17 @@ static max30105_handle_t gs_handle;        /**< max30105 handle */
  */
 uint8_t max30105_register_test(void)
 {
-    volatile uint8_t res;
-    volatile uint8_t pointer;
-    volatile uint8_t pointer_check;
-    volatile uint8_t threshold;
-    volatile uint8_t threshold_check;
-    volatile uint8_t value;
-    volatile uint8_t value_check;
-    volatile uint32_t adc;
-    volatile uint32_t adc_check;
-    volatile uint8_t revision_id;
-    volatile uint8_t part_id;
+    uint8_t res;
+    uint8_t pointer;
+    uint8_t pointer_check;
+    uint8_t threshold;
+    uint8_t threshold_check;
+    uint8_t value;
+    uint8_t value_check;
+    uint32_t adc;
+    uint32_t adc_check;
+    uint8_t revision_id;
+    uint8_t part_id;
     max30105_info_t info;
     max30105_bool_t enable;
     max30105_adc_resolution_t resolution;
@@ -80,7 +80,7 @@ uint8_t max30105_register_test(void)
     
     /* get information */
     res = max30105_info(&info);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get info failed.\n");
        
@@ -105,7 +105,7 @@ uint8_t max30105_register_test(void)
     
     /* init the max30105 */
     res = max30105_init(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: init failed.\n");
        
@@ -117,19 +117,19 @@ uint8_t max30105_register_test(void)
     
     /* enable fifo full */
     res = max30105_set_interrupt(&gs_handle, MAX30105_INTERRUPT_FIFO_FULL_EN, MAX30105_BOOL_TRUE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: enable fifo full.\n");
     res = max30105_get_interrupt(&gs_handle, MAX30105_INTERRUPT_FIFO_FULL_EN, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -137,19 +137,19 @@ uint8_t max30105_register_test(void)
     
     /* disable fifo full */
     res = max30105_set_interrupt(&gs_handle, MAX30105_INTERRUPT_FIFO_FULL_EN, MAX30105_BOOL_FALSE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: disable fifo full.\n");
     res = max30105_get_interrupt(&gs_handle, MAX30105_INTERRUPT_FIFO_FULL_EN, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -157,19 +157,19 @@ uint8_t max30105_register_test(void)
     
     /* enable data ready */
     res = max30105_set_interrupt(&gs_handle, MAX30105_INTERRUPT_DATA_RDY_EN, MAX30105_BOOL_TRUE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: enable data ready.\n");
     res = max30105_get_interrupt(&gs_handle, MAX30105_INTERRUPT_DATA_RDY_EN, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -177,19 +177,19 @@ uint8_t max30105_register_test(void)
     
     /* disable data ready */
     res = max30105_set_interrupt(&gs_handle, MAX30105_INTERRUPT_DATA_RDY_EN, MAX30105_BOOL_FALSE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: disable data ready.\n");
     res = max30105_get_interrupt(&gs_handle, MAX30105_INTERRUPT_DATA_RDY_EN, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -197,19 +197,19 @@ uint8_t max30105_register_test(void)
     
     /* enable alc ovf */
     res = max30105_set_interrupt(&gs_handle, MAX30105_INTERRUPT_ALC_OVF_EN, MAX30105_BOOL_TRUE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: enable alc ovf.\n");
     res = max30105_get_interrupt(&gs_handle, MAX30105_INTERRUPT_ALC_OVF_EN, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -217,19 +217,19 @@ uint8_t max30105_register_test(void)
     
     /* disable alc ovf */
     res = max30105_set_interrupt(&gs_handle, MAX30105_INTERRUPT_ALC_OVF_EN, MAX30105_BOOL_FALSE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: disable alc ovf.\n");
     res = max30105_get_interrupt(&gs_handle, MAX30105_INTERRUPT_ALC_OVF_EN, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -237,19 +237,19 @@ uint8_t max30105_register_test(void)
     
     /* enable proximity threshold interrupt */
     res = max30105_set_interrupt(&gs_handle, MAX30105_INTERRUPT_PROX_INT_EN, MAX30105_BOOL_TRUE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: enable proximity threshold interrupt.\n");
     res = max30105_get_interrupt(&gs_handle, MAX30105_INTERRUPT_PROX_INT_EN, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -257,19 +257,19 @@ uint8_t max30105_register_test(void)
     
     /* disable proximity threshold interrupt */
     res = max30105_set_interrupt(&gs_handle, MAX30105_INTERRUPT_PROX_INT_EN, MAX30105_BOOL_FALSE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: disable proximity threshold interrupt.\n");
     res = max30105_get_interrupt(&gs_handle, MAX30105_INTERRUPT_PROX_INT_EN, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -277,19 +277,19 @@ uint8_t max30105_register_test(void)
     
     /* enable die temp ready */
     res = max30105_set_interrupt(&gs_handle, MAX30105_INTERRUPT_DIE_TEMP_RDY_EN, MAX30105_BOOL_TRUE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: enable die temp ready.\n");
     res = max30105_get_interrupt(&gs_handle, MAX30105_INTERRUPT_DIE_TEMP_RDY_EN, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -297,19 +297,19 @@ uint8_t max30105_register_test(void)
     
     /* disable die temp ready */
     res = max30105_set_interrupt(&gs_handle, MAX30105_INTERRUPT_DIE_TEMP_RDY_EN, MAX30105_BOOL_FALSE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: disable die temp ready.\n");
     res = max30105_get_interrupt(&gs_handle, MAX30105_INTERRUPT_DIE_TEMP_RDY_EN, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get interrupt failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -320,19 +320,19 @@ uint8_t max30105_register_test(void)
     
     pointer = rand() % 0x1F;
     res = max30105_set_fifo_write_pointer(&gs_handle, pointer);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set fifo write pointer failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set fifo write pointer %d.\n", pointer);
     res = max30105_get_fifo_write_pointer(&gs_handle, (uint8_t *)&pointer_check);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get fifo write pointer failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -342,19 +342,19 @@ uint8_t max30105_register_test(void)
     
     pointer = rand() % 0x1F;
     res = max30105_set_fifo_overflow_counter(&gs_handle, pointer);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set fifo overflow counter failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set fifo overflow counter %d.\n", pointer);
     res = max30105_get_fifo_overflow_counter(&gs_handle, (uint8_t *)&pointer_check);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get fifo overflow counter failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -364,19 +364,19 @@ uint8_t max30105_register_test(void)
     
     pointer = rand() % 0x1F;
     res = max30105_set_fifo_read_pointer(&gs_handle, pointer);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set fifo read pointer failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set fifo read pointer %d.\n", pointer);
     res = max30105_get_fifo_read_pointer(&gs_handle, (uint8_t *)&pointer_check);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get fifo read pointer failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -386,19 +386,19 @@ uint8_t max30105_register_test(void)
     
     pointer = rand() % 0x1F;
     res = max30105_set_fifo_data(&gs_handle, pointer);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set fifo data failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set fifo data %d.\n", pointer);
     res = max30105_get_fifo_data(&gs_handle, (uint8_t *)&pointer_check);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get fifo data failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -408,19 +408,19 @@ uint8_t max30105_register_test(void)
     
     /* set sample averaging 1 */
     res = max30105_set_fifo_sample_averaging(&gs_handle, MAX30105_SAMPLE_AVERAGING_1);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set fifo sample averaging failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set sample averaging 1.\n");
     res = max30105_get_fifo_sample_averaging(&gs_handle, &sample);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get fifo sample averaging failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -428,19 +428,19 @@ uint8_t max30105_register_test(void)
     
     /* set sample averaging 2 */
     res = max30105_set_fifo_sample_averaging(&gs_handle, MAX30105_SAMPLE_AVERAGING_2);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set fifo sample averaging failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set sample averaging 2.\n");
     res = max30105_get_fifo_sample_averaging(&gs_handle, &sample);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get fifo sample averaging failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -448,19 +448,19 @@ uint8_t max30105_register_test(void)
     
     /* set sample averaging 4 */
     res = max30105_set_fifo_sample_averaging(&gs_handle, MAX30105_SAMPLE_AVERAGING_4);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set fifo sample averaging failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set sample averaging 4.\n");
     res = max30105_get_fifo_sample_averaging(&gs_handle, &sample);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get fifo sample averaging failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -468,19 +468,19 @@ uint8_t max30105_register_test(void)
     
     /* set sample averaging 8 */
     res = max30105_set_fifo_sample_averaging(&gs_handle, MAX30105_SAMPLE_AVERAGING_8);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set fifo sample averaging failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set sample averaging 8.\n");
     res = max30105_get_fifo_sample_averaging(&gs_handle, &sample);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get fifo sample averaging failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -488,19 +488,19 @@ uint8_t max30105_register_test(void)
     
     /* set sample averaging 16 */
     res = max30105_set_fifo_sample_averaging(&gs_handle, MAX30105_SAMPLE_AVERAGING_16);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set fifo sample averaging failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set sample averaging 16.\n");
     res = max30105_get_fifo_sample_averaging(&gs_handle, &sample);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get fifo sample averaging failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -508,19 +508,19 @@ uint8_t max30105_register_test(void)
     
     /* set sample averaging 32 */
     res = max30105_set_fifo_sample_averaging(&gs_handle, MAX30105_SAMPLE_AVERAGING_32);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set fifo sample averaging failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set sample averaging 32.\n");
     res = max30105_get_fifo_sample_averaging(&gs_handle, &sample);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get fifo sample averaging failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -531,19 +531,19 @@ uint8_t max30105_register_test(void)
     
     /* enable fifo roll */
     res = max30105_set_fifo_roll(&gs_handle, MAX30105_BOOL_TRUE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set fifo roll failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: enable fifo roll.\n");
     res = max30105_get_fifo_roll(&gs_handle, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get fifo roll failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -551,19 +551,19 @@ uint8_t max30105_register_test(void)
     
     /* disable fifo roll */
     res = max30105_set_fifo_roll(&gs_handle, MAX30105_BOOL_FALSE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set fifo roll failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: disable fifo roll.\n");
     res = max30105_get_fifo_roll(&gs_handle, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get fifo roll failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -574,19 +574,19 @@ uint8_t max30105_register_test(void)
     
     value = rand() % 0xF;
     res = max30105_set_fifo_almost_full(&gs_handle, value);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set fifo almost full failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set fifo almost full %d.\n", value);
     res = max30105_get_fifo_almost_full(&gs_handle, (uint8_t *)&value_check);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get fifo almost full failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -597,19 +597,19 @@ uint8_t max30105_register_test(void)
     
     /* enable shutdown */
     res = max30105_set_shutdown(&gs_handle, MAX30105_BOOL_TRUE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set shutdown failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: enable shutdown.\n");
     res = max30105_get_shutdown(&gs_handle, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get shutdown failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -617,19 +617,19 @@ uint8_t max30105_register_test(void)
     
     /* disable shutdown */
     res = max30105_set_shutdown(&gs_handle, MAX30105_BOOL_FALSE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set shutdown failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: disable shutdown.\n");
     res = max30105_get_shutdown(&gs_handle, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get shutdown failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -640,19 +640,19 @@ uint8_t max30105_register_test(void)
     
     /* red mode */
     res = max30105_set_mode(&gs_handle, MAX30105_MODE_RED);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set mode failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set red mode.\n");
     res = max30105_get_mode(&gs_handle, &mode);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get mode failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -660,19 +660,19 @@ uint8_t max30105_register_test(void)
     
     /* red ir mode */
     res = max30105_set_mode(&gs_handle, MAX30105_MODE_RED_IR);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set mode failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set red ir mode.\n");
     res = max30105_get_mode(&gs_handle, &mode);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get mode failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -680,19 +680,19 @@ uint8_t max30105_register_test(void)
     
     /* red ir green */
     res = max30105_set_mode(&gs_handle, MAX30105_MODE_GREEN_RED_IR);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set mode failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set red ir green mode.\n");
     res = max30105_get_mode(&gs_handle, &mode);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get mode failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -703,19 +703,19 @@ uint8_t max30105_register_test(void)
     
     /* 2048 */
     res = max30105_set_particle_sensing_adc_range(&gs_handle, MAX30105_PARTICLE_SENSING_ADC_RANGE_2048);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set particle sensing adc range failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set particle sensing adc range 2048.\n");
     res = max30105_get_particle_sensing_adc_range(&gs_handle, &range);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get particle sensing adc range failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -723,19 +723,19 @@ uint8_t max30105_register_test(void)
     
     /* 4096 */
     res = max30105_set_particle_sensing_adc_range(&gs_handle, MAX30105_PARTICLE_SENSING_ADC_RANGE_4096);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set particle sensing adc range failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set particle sensing adc range 4096.\n");
     res = max30105_get_particle_sensing_adc_range(&gs_handle, &range);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get particle sensing adc range failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -743,19 +743,19 @@ uint8_t max30105_register_test(void)
     
     /* 8192 */
     res = max30105_set_particle_sensing_adc_range(&gs_handle, MAX30105_PARTICLE_SENSING_ADC_RANGE_8192);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set particle sensing adc range failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set particle sensing adc range 8192.\n");
     res = max30105_get_particle_sensing_adc_range(&gs_handle, &range);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get particle sensing adc range failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -763,19 +763,19 @@ uint8_t max30105_register_test(void)
     
     /* 16384 */
     res = max30105_set_particle_sensing_adc_range(&gs_handle, MAX30105_PARTICLE_SENSING_ADC_RANGE_16384);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set particle sensing adc range failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set particle sensing adc range 16384.\n");
     res = max30105_get_particle_sensing_adc_range(&gs_handle, &range);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get particle sensing adc range failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -786,19 +786,19 @@ uint8_t max30105_register_test(void)
     
     /* 50Hz */
     res = max30105_set_particle_sensing_sample_rate(&gs_handle, MAX30105_PARTICLE_SENSING_SAMPLE_RATE_50_HZ);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set particle sensing sample rate failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set particle sensing sample rate 50Hz.\n");
     res = max30105_get_particle_sensing_sample_rate(&gs_handle, &rate);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get particle sensing sample rate failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -806,19 +806,19 @@ uint8_t max30105_register_test(void)
     
     /* 100Hz */
     res = max30105_set_particle_sensing_sample_rate(&gs_handle, MAX30105_PARTICLE_SENSING_SAMPLE_RATE_100_HZ);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set particle sensing sample rate failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set particle sensing sample rate 100Hz.\n");
     res = max30105_get_particle_sensing_sample_rate(&gs_handle, &rate);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get particle sensing sample rate failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -826,19 +826,19 @@ uint8_t max30105_register_test(void)
     
     /* 200Hz */
     res = max30105_set_particle_sensing_sample_rate(&gs_handle, MAX30105_PARTICLE_SENSING_SAMPLE_RATE_200_HZ);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set particle sensing sample rate failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set particle sensing sample rate 200Hz.\n");
     res = max30105_get_particle_sensing_sample_rate(&gs_handle, &rate);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get particle sensing sample rate failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -846,19 +846,19 @@ uint8_t max30105_register_test(void)
     
     /* 400Hz */
     res = max30105_set_particle_sensing_sample_rate(&gs_handle, MAX30105_PARTICLE_SENSING_SAMPLE_RATE_400_HZ);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set particle sensing sample rate failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set particle sensing sample rate 400Hz.\n");
     res = max30105_get_particle_sensing_sample_rate(&gs_handle, &rate);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get particle sensing sample rate failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -866,19 +866,19 @@ uint8_t max30105_register_test(void)
     
     /* 800Hz */
     res = max30105_set_particle_sensing_sample_rate(&gs_handle, MAX30105_PARTICLE_SENSING_SAMPLE_RATE_800_HZ);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set particle sensing sample rate failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set particle sensing sample rate 800Hz.\n");
     res = max30105_get_particle_sensing_sample_rate(&gs_handle, &rate);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get particle sensing sample rate failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -886,19 +886,19 @@ uint8_t max30105_register_test(void)
     
     /* 1000Hz */
     res = max30105_set_particle_sensing_sample_rate(&gs_handle, MAX30105_PARTICLE_SENSING_SAMPLE_RATE_1000_HZ);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set particle sensing sample rate failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set particle sensing sample rate 1000Hz.\n");
     res = max30105_get_particle_sensing_sample_rate(&gs_handle, &rate);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get particle sensing sample rate failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -906,19 +906,19 @@ uint8_t max30105_register_test(void)
     
     /* 1600Hz */
     res = max30105_set_particle_sensing_sample_rate(&gs_handle, MAX30105_PARTICLE_SENSING_SAMPLE_RATE_1600_HZ);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set particle sensing sample rate failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set particle sensing sample rate 1600Hz.\n");
     res = max30105_get_particle_sensing_sample_rate(&gs_handle, &rate);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get particle sensing sample rate failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -926,19 +926,19 @@ uint8_t max30105_register_test(void)
     
     /* 3200Hz */
     res = max30105_set_particle_sensing_sample_rate(&gs_handle, MAX30105_PARTICLE_SENSING_SAMPLE_RATE_3200_HZ);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set particle sensing sample rate failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set particle sensing sample rate 3200Hz.\n");
     res = max30105_get_particle_sensing_sample_rate(&gs_handle, &rate);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get particle sensing sample rate failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -949,19 +949,19 @@ uint8_t max30105_register_test(void)
     
     /* 15 bits */
     res = max30105_set_adc_resolution(&gs_handle, MAX30105_ADC_RESOLUTION_15_BIT);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set adc resolution failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set adc resolution 15 bits.\n");
     res = max30105_get_adc_resolution(&gs_handle, &resolution);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get adc resolution failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -969,19 +969,19 @@ uint8_t max30105_register_test(void)
     
     /* 16 bits */
     res = max30105_set_adc_resolution(&gs_handle, MAX30105_ADC_RESOLUTION_16_BIT);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set adc resolution failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set adc resolution 16 bits.\n");
     res = max30105_get_adc_resolution(&gs_handle, &resolution);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get adc resolution failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -989,19 +989,19 @@ uint8_t max30105_register_test(void)
     
     /* 17 bits */
     res = max30105_set_adc_resolution(&gs_handle, MAX30105_ADC_RESOLUTION_17_BIT);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set adc resolution failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set adc resolution 17 bits.\n");
     res = max30105_get_adc_resolution(&gs_handle, &resolution);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get adc resolution failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1009,19 +1009,19 @@ uint8_t max30105_register_test(void)
     
     /* 18 bits */
     res = max30105_set_adc_resolution(&gs_handle, MAX30105_ADC_RESOLUTION_18_BIT);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set adc resolution failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set adc resolution 18 bits.\n");
     res = max30105_get_adc_resolution(&gs_handle, &resolution);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get adc resolution failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1032,19 +1032,19 @@ uint8_t max30105_register_test(void)
     
     value = rand() % 256;
     res = max30105_set_led_red_pulse_amplitude(&gs_handle, value);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set led red pulse amplitude failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set led red pulse amplitude %d.\n", value);
     res = max30105_get_led_red_pulse_amplitude(&gs_handle, (uint8_t *)&value_check);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get led red pulse amplitude failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1055,19 +1055,19 @@ uint8_t max30105_register_test(void)
     
     value = rand() % 256;
     res = max30105_set_led_ir_pulse_amplitude(&gs_handle, value);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set led ir pulse amplitude failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set led ir pulse amplitude %d.\n", value);
     res = max30105_get_led_ir_pulse_amplitude(&gs_handle, (uint8_t *)&value_check);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get led ir pulse amplitude failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1078,19 +1078,19 @@ uint8_t max30105_register_test(void)
     
     value = rand() % 256;
     res = max30105_set_led_green_pulse_amplitude(&gs_handle, value);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set led green pulse amplitude failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set led green pulse amplitude %d.\n", value);
     res = max30105_get_led_green_pulse_amplitude(&gs_handle, (uint8_t *)&value_check);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get led green pulse amplitude failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1101,19 +1101,19 @@ uint8_t max30105_register_test(void)
     
     value = rand() % 256;
     res = max30105_set_led_proximity_pulse_amplitude(&gs_handle, value);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set led proximity pulse amplitude failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set led proximity pulse amplitude %d.\n", value);
     res = max30105_get_led_proximity_pulse_amplitude(&gs_handle, (uint8_t *)&value_check);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get led proximity pulse amplitude failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1124,19 +1124,19 @@ uint8_t max30105_register_test(void)
     
     /* slot1 led none */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_1, MAX30105_LED_NONE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot1 led none.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_1, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1144,19 +1144,19 @@ uint8_t max30105_register_test(void)
     
     /* slot1 red led1 pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_1, MAX30105_LED_RED_LED1_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot1 red led1 pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_1, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1164,19 +1164,19 @@ uint8_t max30105_register_test(void)
     
     /* slot1 ir led2 pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_1, MAX30105_LED_IR_LED2_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot1 ir led2 pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_1, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1184,19 +1184,19 @@ uint8_t max30105_register_test(void)
     
     /* slot1 green led3 pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_1, MAX30105_LED_GREEN_LED3_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot1 green led3 pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_1, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1204,19 +1204,19 @@ uint8_t max30105_register_test(void)
     
     /* slot1 red pilot pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_1, MAX30105_LED_RED_PILOT_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot1 red pilot pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_1, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1224,19 +1224,19 @@ uint8_t max30105_register_test(void)
     
     /* slot1 ir pilot pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_1, MAX30105_LED_IR_PILOT_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot1 ir pilot pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_1, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1244,19 +1244,19 @@ uint8_t max30105_register_test(void)
     
     /* slot1 green pilot pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_1, MAX30105_LED_GREEN_PILOT_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot1 green pilot pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_1, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1264,19 +1264,19 @@ uint8_t max30105_register_test(void)
     
     /* slot2 led none */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_2, MAX30105_LED_NONE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot2 led none.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_2, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1284,19 +1284,19 @@ uint8_t max30105_register_test(void)
     
     /* slot2 red led1 pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_2, MAX30105_LED_RED_LED1_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot2 red led1 pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_2, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1304,19 +1304,19 @@ uint8_t max30105_register_test(void)
     
     /* slot2 ir led2 pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_2, MAX30105_LED_IR_LED2_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot2 ir led2 pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_2, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1324,19 +1324,19 @@ uint8_t max30105_register_test(void)
     
     /* slot2 green led3 pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_2, MAX30105_LED_GREEN_LED3_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot2 green led3 pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_2, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1344,19 +1344,19 @@ uint8_t max30105_register_test(void)
     
     /* slot2 red pilot pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_2, MAX30105_LED_RED_PILOT_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot2 red pilot pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_2, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1364,19 +1364,19 @@ uint8_t max30105_register_test(void)
     
     /* slot2 ir pilot pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_2, MAX30105_LED_IR_PILOT_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot2 ir pilot pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_2, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1384,19 +1384,19 @@ uint8_t max30105_register_test(void)
     
     /* slot2 green pilot pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_2, MAX30105_LED_GREEN_PILOT_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot2 green pilot pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_2, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1404,19 +1404,19 @@ uint8_t max30105_register_test(void)
     
     /* slot3 led none */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_3, MAX30105_LED_NONE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot3 led none.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_3, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1424,19 +1424,19 @@ uint8_t max30105_register_test(void)
     
     /* slot3 red led1 pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_3, MAX30105_LED_RED_LED1_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot3 red led1 pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_3, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1444,19 +1444,19 @@ uint8_t max30105_register_test(void)
     
     /* slot3 ir led2 pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_3, MAX30105_LED_IR_LED2_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot3 ir led2 pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_3, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1464,19 +1464,19 @@ uint8_t max30105_register_test(void)
     
     /* slot3 green led3 pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_3, MAX30105_LED_GREEN_LED3_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot3 green led3 pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_3, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1484,19 +1484,19 @@ uint8_t max30105_register_test(void)
     
     /* slot3 red pilot pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_3, MAX30105_LED_RED_PILOT_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot3 red pilot pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_3, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1504,19 +1504,19 @@ uint8_t max30105_register_test(void)
     
     /* slot3 ir pilot pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_3, MAX30105_LED_IR_PILOT_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot3 ir pilot pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_3, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1524,19 +1524,19 @@ uint8_t max30105_register_test(void)
     
     /* slot3 green pilot pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_3, MAX30105_LED_GREEN_PILOT_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot3 green pilot pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_3, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1544,19 +1544,19 @@ uint8_t max30105_register_test(void)
     
     /* slot4 led none */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_4, MAX30105_LED_NONE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot4 led none.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_4, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1564,19 +1564,19 @@ uint8_t max30105_register_test(void)
     
     /* slot4 red led1 pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_4, MAX30105_LED_RED_LED1_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot4 red led1 pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_4, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1584,19 +1584,19 @@ uint8_t max30105_register_test(void)
     
     /* slot4 ir led2 pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_4, MAX30105_LED_IR_LED2_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot4 ir led2 pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_4, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1604,19 +1604,19 @@ uint8_t max30105_register_test(void)
     
     /* slot4 green led3 pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_4, MAX30105_LED_GREEN_LED3_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot4 green led3 pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_4, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1624,19 +1624,19 @@ uint8_t max30105_register_test(void)
     
     /* slot4 red pilot pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_4, MAX30105_LED_RED_PILOT_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot4 red pilot pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_4, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1644,19 +1644,19 @@ uint8_t max30105_register_test(void)
     
     /* slot4 ir pilot pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_4, MAX30105_LED_IR_PILOT_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot4 ir pilot pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_4, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1664,19 +1664,19 @@ uint8_t max30105_register_test(void)
     
     /* slot4 green pilot pa */
     res = max30105_set_slot(&gs_handle, MAX30105_SLOT_4, MAX30105_LED_GREEN_PILOT_PA);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set slot4 green pilot pa.\n");
     res = max30105_get_slot(&gs_handle, MAX30105_SLOT_4, &led);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get slot failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1687,19 +1687,19 @@ uint8_t max30105_register_test(void)
     
     /* disable */
     res = max30105_set_die_temperature(&gs_handle, MAX30105_BOOL_FALSE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set die temperature failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: disable die temperature.\n");
     res = max30105_get_die_temperature(&gs_handle, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get die temperature failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1707,19 +1707,19 @@ uint8_t max30105_register_test(void)
     
     /* enable */
     res = max30105_set_die_temperature(&gs_handle, MAX30105_BOOL_TRUE);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set die temperature failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: enable die temperature.\n");
     res = max30105_get_die_temperature(&gs_handle, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get die temperature failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1730,19 +1730,19 @@ uint8_t max30105_register_test(void)
     
     threshold = rand() % 256;
     res = max30105_set_proximity_interrupt_threshold(&gs_handle, threshold);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: set proximity interrupt threshold failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: set proximity interrupt threshold %d.\n", threshold);
     res = max30105_get_proximity_interrupt_threshold(&gs_handle, (uint8_t *)&threshold_check);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get proximity interrupt threshold failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1752,19 +1752,19 @@ uint8_t max30105_register_test(void)
     
     adc = rand() % 256 * 1023;
     res = max30105_proximity_threshold_convert_to_register(&gs_handle, adc, (uint8_t *)&value);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: proximity threshold convert to register failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
     max30105_interface_debug_print("max30105: adc is %d.\n", adc);
     res = max30105_proximity_threshold_convert_to_data(&gs_handle, value, (uint32_t *)&adc_check);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: proximity threshold convert to data failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1775,10 +1775,10 @@ uint8_t max30105_register_test(void)
 
     /* get id */
     res = max30105_get_id(&gs_handle, (uint8_t *)&revision_id, (uint8_t *)&part_id);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get id failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1789,10 +1789,10 @@ uint8_t max30105_register_test(void)
     
     /* get fifo full */
     res = max30105_get_interrupt_status(&gs_handle, MAX30105_INTERRUPT_STATUS_FIFO_FULL, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get interrupt status failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1800,10 +1800,10 @@ uint8_t max30105_register_test(void)
     
     /* get data ready */
     res = max30105_get_interrupt_status(&gs_handle, MAX30105_INTERRUPT_STATUS_DATA_RDY, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get interrupt status failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1811,10 +1811,10 @@ uint8_t max30105_register_test(void)
     
     /* get alc ovf */
     res = max30105_get_interrupt_status(&gs_handle, MAX30105_INTERRUPT_STATUS_ALC_OVF, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get interrupt status failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1822,10 +1822,10 @@ uint8_t max30105_register_test(void)
     
     /* get proximity threshold */
     res = max30105_get_interrupt_status(&gs_handle, MAX30105_INTERRUPT_STATUS_PROX_INT, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get interrupt status failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1833,10 +1833,10 @@ uint8_t max30105_register_test(void)
     
     /* get pwr ready */
     res = max30105_get_interrupt_status(&gs_handle, MAX30105_INTERRUPT_STATUS_PWR_RDY, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get interrupt status failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1844,10 +1844,10 @@ uint8_t max30105_register_test(void)
     
     /* get die temp ready */
     res = max30105_get_interrupt_status(&gs_handle, MAX30105_INTERRUPT_STATUS_DIE_TEMP_RDY, &enable);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: get interrupt status failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1858,10 +1858,10 @@ uint8_t max30105_register_test(void)
     
     /* reset */
     res = max30105_reset(&gs_handle);
-    if (res)
+    if (res != 0)
     {
         max30105_interface_debug_print("max30105: reset failed.\n");
-        max30105_deinit(&gs_handle);
+        (void)max30105_deinit(&gs_handle);
        
         return 1;
     }
@@ -1870,7 +1870,7 @@ uint8_t max30105_register_test(void)
     
     /* finish register test */
     max30105_interface_debug_print("max30105: finish register test.\n");
-    max30105_deinit(&gs_handle);
+    (void)max30105_deinit(&gs_handle);
     
     return 0;
 }

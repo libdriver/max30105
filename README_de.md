@@ -27,15 +27,15 @@ LibDriver MAX30105 ist der Treiber mit vollem Funktionsumfang von MAX30105, der 
 
 /src enthält LibDriver MAX30105-Quelldateien.
 
-/interface enthält die plattformunabhängige Vorlage LibDriver MAX30105 IIC。
+/interface enthält die plattformunabhängige Vorlage LibDriver MAX30105 IIC.
 
-/test enthält den Testcode des LibDriver MAX30105-Treibers und dieser Code kann die erforderliche Funktion des Chips einfach testen。
+/test enthält den Testcode des LibDriver MAX30105-Treibers und dieser Code kann die erforderliche Funktion des Chips einfach testen.
 
 /example enthält LibDriver MAX30105-Beispielcode.
 
 /doc enthält das LibDriver MAX30105-Offlinedokument.
 
-/Datenblatt enthält MAX30105-Datenblatt。
+/Datenblatt enthält MAX30105-Datenblatt.
 
 /project enthält den allgemeinen Beispielcode für Linux- und MCU-Entwicklungsboards. Alle Projekte verwenden das Shell-Skript, um den Treiber zu debuggen, und die detaillierten Anweisungen finden Sie in der README.md jedes Projekts.
 

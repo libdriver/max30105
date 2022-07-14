@@ -154,20 +154,23 @@ uint8_t max30105_init(max30105_handle_t *handle)
     if (res != 0)                                                                                           /* check result */
     {
         handle->debug_print("max30105: read part id failed.\n");                                            /* read part id failed */
-       
+        (void)handle->iic_deinit();                                                                         /* iic deinit */
+        
         return 4;                                                                                           /* return error */
     }
     if (part_id != 0x15)                                                                                    /* check part id */
     {
         handle->debug_print("max30105: id is invalid.\n");                                                  /* id is invalid */
-       
+        (void)handle->iic_deinit();                                                                         /* iic deinit */
+        
         return 4;                                                                                           /* return error */
     }
     res = handle->iic_read(MAX30105_ADDRESS, MAX30105_REG_MODE_CONFIG, (uint8_t *)&prev, 1);                /* read mode config */
     if (res != 0)                                                                                           /* check result */
     {
         handle->debug_print("max30105: read mode config failed.\n");                                        /* read mode config failed */
-       
+        (void)handle->iic_deinit();                                                                         /* iic deinit */
+        
         return 5;                                                                                           /* return error */
     }
     prev &= ~(1 << 6);                                                                                      /* clear config */
@@ -176,7 +179,8 @@ uint8_t max30105_init(max30105_handle_t *handle)
     if (res != 0)                                                                                           /* check result */
     {
         handle->debug_print("max30105: write mode config failed.\n");                                       /* write mode config failed */
-       
+        (void)handle->iic_deinit();                                                                         /* iic deinit */
+        
         return 5;                                                                                           /* return error */
     }
     handle->delay_ms(10);                                                                                   /* delay 10 ms */
@@ -184,13 +188,15 @@ uint8_t max30105_init(max30105_handle_t *handle)
     if (res != 0)                                                                                           /* check result */
     {
         handle->debug_print("max30105: read mode config failed.\n");                                        /* read mode config failed */
-       
+        (void)handle->iic_deinit();                                                                         /* iic deinit */
+        
         return 5;                                                                                           /* return error */
     }
     if ((prev & (1 << 6)) != 0)                                                                             /* check result */
     {
         handle->debug_print("max30105: reset failed.\n");                                                   /* reset failed */
-       
+        (void)handle->iic_deinit();                                                                         /* iic deinit */
+        
         return 5;                                                                                           /* return error */
     }
     prev = 0;                                                                                               /* set zero */
@@ -198,21 +204,24 @@ uint8_t max30105_init(max30105_handle_t *handle)
     if (res != 0)                                                                                           /* check result */
     {
         handle->debug_print("max30105: wirte fifo read pointer failed.\n");                                 /* write fifo read pointer failed */
-       
+        (void)handle->iic_deinit();                                                                         /* iic deinit */
+        
         return 6;                                                                                           /* return error */
     }
     res = handle->iic_write(MAX30105_ADDRESS, MAX30105_REG_FIFO_WRITE_POINTER, (uint8_t *)&prev, 1);        /* write fifo write pointer */
     if (res != 0)                                                                                           /* check result */
     {
         handle->debug_print("max30105: wirte fifo write pointer failed.\n");                                /* write fifo write pointer failed */
-       
+        (void)handle->iic_deinit();                                                                         /* iic deinit */
+        
         return 6;                                                                                           /* return error */
     }
     res = handle->iic_write(MAX30105_ADDRESS, MAX30105_REG_OVERFLOW_COUNTER, (uint8_t *)&prev, 1);          /* write overflow counter */
     if (res != 0)                                                                                           /* check result */
     {
         handle->debug_print("max30105: write overflow counter failed.\n");                                  /* write overflow counter failed */
-       
+        (void)handle->iic_deinit();                                                                         /* iic deinit */
+        
         return 6;                                                                                           /* return error */
     }
     handle->inited = 1;                                                                                     /* flag finish initialization */

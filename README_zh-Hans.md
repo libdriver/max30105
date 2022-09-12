@@ -50,6 +50,8 @@ LibDriver MAX30105是LibDriver推出的MAX30105的全功能驱动，该驱动提
 #### example fifo
 
 ```C
+#include "driver_max30105_fifo.h"
+
 static uint32_t gs_raw_red[32];
 static uint32_t gs_raw_ir[32];
 static uint32_t gs_raw_green[32];

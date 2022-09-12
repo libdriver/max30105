@@ -50,6 +50,8 @@ LibDriver MAX30105는 LibDriver에서 출시한 MAX30105의 전체 기능 드라
 #### example fifo
 
 ```C
+#include "driver_max30105_fifo.h"
+
 static uint32_t gs_raw_red[32];
 static uint32_t gs_raw_ir[32];
 static uint32_t gs_raw_green[32];

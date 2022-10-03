@@ -27,15 +27,15 @@ LibDriver MAX30105 is the full function driver of MAX30105 launched by LibDriver
 
 /src includes LibDriver MAX30105 source files.
 
-/interface includes LibDriver MAX30105 IIC platform independent template。
+/interface includes LibDriver MAX30105 IIC platform independent template.
 
-/test includes LibDriver MAX30105 driver test code and this code can test the chip necessary function simply。
+/test includes LibDriver MAX30105 driver test code and this code can test the chip necessary function simply.
 
 /example includes LibDriver MAX30105 sample code.
 
 /doc includes LibDriver MAX30105 offline document.
 
-/datasheet includes MAX30105 datasheet。
+/datasheet includes MAX30105 datasheet.
 
 /project includes the common Linux and MCU development board sample code. All projects use the shell script to debug the driver and the detail instruction can be found in each project's README.md.
 
@@ -50,6 +50,8 @@ Add /src, /interface and /example to your project.
 #### example fifo
 
 ```C
+#include "driver_max30105_fifo.h"
+
 static uint32_t gs_raw_red[32];
 static uint32_t gs_raw_ir[32];
 static uint32_t gs_raw_green[32];

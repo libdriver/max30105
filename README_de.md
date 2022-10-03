@@ -50,6 +50,8 @@ Fügen Sie /src, /interface und /example zu Ihrem Projekt hinzu.
 #### example fifo
 
 ```C
+#include "driver_max30105_fifo.h"
+
 static uint32_t gs_raw_red[32];
 static uint32_t gs_raw_ir[32];
 static uint32_t gs_raw_green[32];

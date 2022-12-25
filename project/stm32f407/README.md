@@ -66,13 +66,13 @@ We use '\n' to wrap lines.If your serial port assistant displays exceptions (e.g
    max30105 (-t reg | --test=reg)
    ```
 
-5. Run max30105 fifo test, times means test times.
+5. Run max30105 fifo test, num means test times.
 
    ```shell
    max30105 (-t fifo | --test=fifo) [--times=<num>]
    ```
 
-6. Run max30105 fifo function, times means read times.
+6. Run max30105 fifo function, num means read times.
 
    ```shell
    max30105 (-e fifo | --example=fifo) [--times=<num>]

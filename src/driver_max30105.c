@@ -391,7 +391,7 @@ uint8_t max30105_irq_handler(max30105_handle_t *handle)
  * @brief         read the data
  * @param[in]     *handle points to a max30105 handle structure
  * @param[out]    *raw_red points to a red raw data buffer
- * @param[out]    *raw_ir points to a ir raw data buffer
+ * @param[out]    *raw_ir points to an ir raw data buffer
  * @param[out]    *raw_green points to a green raw data buffer
  * @param[in,out] *len points to a length buffer
  * @return        status code
@@ -1812,7 +1812,7 @@ uint8_t max30105_set_adc_resolution(max30105_handle_t *handle, max30105_adc_reso
 /**
  * @brief      get the adc resolution
  * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *resolution points to a adc resolution buffer
+ * @param[out] *resolution points to an adc resolution buffer
  * @return     status code
  *             - 0 success
  *             - 1 get adc resolution failed
@@ -1954,7 +1954,7 @@ uint8_t max30105_set_led_ir_pulse_amplitude(max30105_handle_t *handle, uint8_t a
 /**
  * @brief      get the ir led pulse amplitude
  * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *amp points to a ir led pulse amplitude buffer
+ * @param[out] *amp points to an ir led pulse amplitude buffer
  * @return     status code
  *             - 0 success
  *             - 1 get led ir pulse amplitude failed
@@ -2513,7 +2513,7 @@ uint8_t max30105_proximity_threshold_convert_to_register(max30105_handle_t *hand
  * @brief      convert the register raw data to the proximity threshold
  * @param[in]  *handle points to a max30105 handle structure
  * @param[in]  reg is the register raw data
- * @param[out] *adc points to a adc range buffer
+ * @param[out] *adc points to an adc range buffer
  * @return     status code
  *             - 0 success
  *             - 2 handle is NULL

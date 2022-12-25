@@ -37,7 +37,7 @@
 #include "driver_max30105_fifo_test.h"
 
 static max30105_handle_t gs_handle;        /**< max30105 handle */
-static uint8_t gs_flag;                    /**< flag */
+static volatile uint8_t gs_flag;           /**< flag */
 static uint32_t gs_raw_red[32];            /**< raw red buffer */
 static uint32_t gs_raw_ir[32];             /**< raw ir buffer */
 static uint32_t gs_raw_green[32];          /**< raw green buffer */

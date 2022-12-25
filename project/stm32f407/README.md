@@ -2,49 +2,81 @@
 
 #### 1.1 Chip Info
 
-chip name : STM32F407ZGT6.
+Chip Name: STM32F407ZGT6.
 
-extern oscillator : 8MHz.
+Extern Oscillator: 8MHz.
 
-uart pin: TX/RX PA9/PA10.
+UART Pin: TX/RX PA9/PA10.
 
-iic pin: SCL/SDA PB8/PB9.
+IIC Pin: SCL/SDA PB8/PB9.
 
-gpio pin: INT PB0.
+GPIO Pin: INT PB0.
 
-### 2. Shell
+### 2. Development and Debugging
 
-#### 2.1 Shell Parameter
+#### 2.1 Integrated Development Environment
 
-baud rate: 115200.
+LidDriver provides both Keil and IAR integrated development environment projects.
 
-data bits : 8.
+MDK is the Keil ARM project and your Keil version must be 5 or higher.Keil ARM project needs STMicroelectronics STM32F4 Series Device Family Pack and you can download from https://www.keil.com/dd2/stmicroelectronics/stm32f407zgtx.
 
-stop bits: 1.
+EW is the IAR ARM project and your IAR version must be 9 or higher.
 
-parity: none.
+#### 2.2 Serial Port Parameter
 
-flow control: none.
+Baud Rate: 115200.
+
+Data Bits : 8.
+
+Stop Bits: 1.
+
+Parity: None.
+
+Flow Control: None.
+
+#### 2.3 Serial Port Assistant
+
+We use '\n' to wrap lines.If your serial port assistant displays exceptions (e.g. the displayed content does not divide lines), please modify the configuration of your serial port assistant or replace one that supports '\n' parsing.
 
 ### 3. MAX30105
 
 #### 3.1 Command Instruction
 
-​          max30105 is a basic command which can test all max30105 driver function:
+1. Show max30105 chip and driver information.
 
-​           -i        show max30105 chip and driver information.
+   ```shell
+   max30105 (-i | --information)
+   ```
 
-​           -h       show max30105 help.
+2. Show max30105 help.
 
-​           -p       show max30105 pin connections of the current board.
+   ```shell
+   max30105 (-h | --help)
+   ```
 
-​           -t (reg | fifo <times>)
+3. Show max30105 pin connections of the current board.
 
-​           -t reg        run max30105 register test.
+   ```shell
+   max30105 (-p | --port)
+   ```
 
-​           -t fifo <times>        run max30105 fifo test. times means test times. 
+4. Run max30105 register test.
 
-​           -c fifo <times>        run max30105 fifo function. times means read times. 
+   ```shell
+   max30105 (-t reg | --test=reg)
+   ```
+
+5. Run max30105 fifo test, times means test times.
+
+   ```shell
+   max30105 (-t fifo | --test=fifo) [--times=<num>]
+   ```
+
+6. Run max30105 fifo function, times means read times.
+
+   ```shell
+   max30105 (-e fifo | --example=fifo) [--times=<num>]
+   ```
 
 #### 3.2 Command Example
 
@@ -274,7 +306,7 @@ max30105: finish register test.
 ```
 
 ```shell
-max30105 -t fifo 3
+max30105 -t fifo --times=3
 
 max30105: chip is Maxim Integrated MAX30105.
 max30105: manufacturer is Maxim Integrated.
@@ -287,7 +319,7 @@ max30105: max temperature is 85.0C.
 max30105: min temperature is -40.0C.
 max30105: start fifo test.
 max30105: irq die temp rdy.
-max30105: temperature is 29.2500C.
+max30105: temperature is 29.7500C.
 max30105: irq proximity threshold.
 max30105: irq fifo full with 17.
 max30105: irq fifo full with 17.
@@ -296,7 +328,7 @@ max30105: finish fifo test.
 ```
 
 ```shell
-max30105 -c fifo 3
+max30105 -e fifo --times=3
 
 max30105: irq prox int.
 max30105: irq fifo full with 17.
@@ -310,17 +342,21 @@ max30105: 3/3.
 ```shell
 max30105 -h
 
-max30105 -i
-	show max30105 chip and driver information.
-max30105 -h
-	show max30105 help.
-max30105 -p
-	show max30105 pin connections of the current board.
-max30105 -t reg
-	run max30105 register test.
-max30105 -t fifo <times>
-	run max30105 fifo test.times means test times.
-max30105 -c fifo <times>
-	run max30105 fifo function.times means read times.
+Usage:
+  max30105 (-i | --information)
+  max30105 (-h | --help)
+  max30105 (-p | --port)
+  max30105 (-t reg | --test=reg)
+  max30105 (-t fifo | --test=fifo) [--times=<num>]
+  max30105 (-e fifo | --example=fifo) [--times=<num>]
+
+Options:
+  -e <fifo>, --example=<fifo>    Run the driver example.
+  -h, --help                     Show the help.
+  -i, --information              Show the chip information.
+  -p, --port                     Display the pin connections of the current board.
+  -t <reg | fifo>, --test=<reg | fifo>
+                                 Run the driver test.
+      --times=<num>              Set the running times.([default: 3])
 ```
 

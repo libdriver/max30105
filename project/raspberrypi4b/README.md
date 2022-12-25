@@ -1,12 +1,12 @@
-### 1. Chip
+### 1. Board
 
-#### 1.1 Chip Info
+#### 1.1 Board Info
 
-chip name : Raspberry Pi 4B.
+Board Name: Raspberry Pi 4B.
 
-iic pin: SCL/SDA GPIO3/GPIO2.
+IIC Pin: SCL/SDA GPIO3/GPIO2.
 
-gpio pin: INT GPIO17.
+GPIO Pin: INT GPIO17.
 
 ### 2. Install
 
@@ -72,26 +72,49 @@ Find the compiled library in CMake.
 find_package(max30105 REQUIRED)
 ```
 
+#### 2.4 INT Pin
+
+INT pin need a 4.3KΩ resistor connect to 5V.
 
 ### 3. MAX30105
 
 #### 3.1 Command Instruction
 
-​          max30105 is a basic command which can test all max30105 driver function:
+1. Show max30105 chip and driver information.
 
-​           -i        show max30105 chip and driver information.
+   ```shell
+   max30105 (-i | --information)
+   ```
 
-​           -h       show max30105 help.
+2. Show max30105 help.
 
-​           -p       show max30105 pin connections of the current board.
+   ```shell
+   max30105 (-h | --help)
+   ```
 
-​           -t (reg | fifo <times>)
+3. Show max30105 pin connections of the current board.
 
-​           -t reg        run max30105 register test.
+   ```shell
+   max30105 (-p | --port)
+   ```
 
-​           -t fifo <times>        run max30105 fifo test. times means test times. 
+4. Run max30105 register test.
 
-​           -c fifo <times>        run max30105 fifo function. times means read times. 
+   ```shell
+   max30105 (-t reg | --test=reg)
+   ```
+
+5. Run max30105 fifo test, times means test times.
+
+   ```shell
+   max30105 (-t fifo | --test=fifo) [--times=<num>]
+   ```
+
+6. Run max30105 fifo function, times means read times.
+
+   ```shell
+   max30105 (-e fifo | --example=fifo) [--times=<num>]
+   ```
 
 #### 3.2 Command Example
 
@@ -321,7 +344,7 @@ max30105: finish register test.
 ```
 
 ```shell
-./max30105 -t fifo 3
+./max30105 -t fifo --times=3
 
 max30105: chip is Maxim Integrated MAX30105.
 max30105: manufacturer is Maxim Integrated.
@@ -334,8 +357,7 @@ max30105: max temperature is 85.0C.
 max30105: min temperature is -40.0C.
 max30105: start fifo test.
 max30105: irq die temp rdy.
-max30105: temperature is 30.2500C.
-max30105: irq proximity threshold.
+max30105: temperature is 29.8750C.
 max30105: irq proximity threshold.
 max30105: irq fifo full with 17.
 max30105: irq fifo full with 17.
@@ -344,12 +366,11 @@ max30105: finish fifo test.
 ```
 
 ```shell
-./max30105 -c fifo 3
+./max30105 -e fifo --times=3
 
 max30105: irq prox int.
 max30105: irq fifo full with 17.
 max30105: 1/3.
-max30105: irq prox int.
 max30105: irq fifo full with 17.
 max30105: 2/3.
 max30105: irq fifo full with 17.
@@ -359,17 +380,21 @@ max30105: 3/3.
 ```shell
 ./max30105 -h
 
-max30105 -i
-        show max30105 chip and driver information.
-max30105 -h
-        show max30105 help.
-max30105 -p
-        show max30105 pin connections of the current board.
-max30105 -t reg
-        run max30105 register test.
-max30105 -t fifo <times>
-        run max30105 fifo test.times means test times.
-max30105 -c fifo <times>
-        run max30105 fifo function.times means read times.
+Usage:
+  max30105 (-i | --information)
+  max30105 (-h | --help)
+  max30105 (-p | --port)
+  max30105 (-t reg | --test=reg)
+  max30105 (-t fifo | --test=fifo) [--times=<num>]
+  max30105 (-e fifo | --example=fifo) [--times=<num>]
+
+Options:
+  -e <fifo>, --example=<fifo>    Run the driver example.
+  -h, --help                     Show the help.
+  -i, --information              Show the chip information.
+  -p, --port                     Display the pin connections of the current board.
+  -t <reg | fifo>, --test=<reg | fifo>
+                                 Run the driver test.
+      --times=<num>              Set the running times.([default: 3])
 ```
 

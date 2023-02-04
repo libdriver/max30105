@@ -56,7 +56,7 @@ extern "C"{
 #define MAX30105_FIFO_DEFAULT_SAMPLE_AVERAGING               MAX30105_SAMPLE_AVERAGING_8                         /**< sample 8 */
 #define MAX30105_FIFO_DEFAULT_FIFO_ROLL                      MAX30105_BOOL_TRUE                                  /**< enable */
 #define MAX30105_FIFO_DEFAULT_FIFO_ALMOST_FULL               0xF                                                 /**< 0xF */
-#define MAX30105_FIFO_DEFAULT_MODE                           MAX30105_MODE_GREEN_RED_IR                          /**< gren red ir mode */
+#define MAX30105_FIFO_DEFAULT_MODE                           MAX30105_MODE_GREEN_RED_IR                          /**< green red ir mode */
 #define MAX30105_FIFO_DEFAULT_PARTICLE_SENSING_ADC_RANGE     MAX30105_PARTICLE_SENSING_ADC_RANGE_4096            /**< adc range 4096 */
 #define MAX30105_FIFO_DEFAULT_PARTICLE_SENSING_SAMPLE_RATE   MAX30105_PARTICLE_SENSING_SAMPLE_RATE_100_HZ        /**< 100 Hz */
 #define MAX30105_FIFO_DEFAULT_ADC_RESOLUTION                 MAX30105_ADC_RESOLUTION_18_BIT                      /**< 18 bits */

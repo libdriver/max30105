@@ -121,7 +121,7 @@ void max30105_receive_callback(uint8_t type)
         }
         case MAX30105_INTERRUPT_STATUS_PROX_INT :
         {
-            max30105_interface_debug_print("max30105: irq prox int.\n");
+            max30105_interface_debug_print("max30105: irq proxy int.\n");
             
             break;
         }
@@ -171,7 +171,7 @@ uint8_t max30105(uint8_t argc, char **argv)
         {"times", required_argument, NULL, 1},
         {NULL, 0, NULL, 0},
     };
-    char type[33] = "unknow";
+    char type[33] = "unknown";
     uint32_t times = 3;
     
     /* if no params */
@@ -462,7 +462,7 @@ int main(void)
     /* uart init */
     uart_init(115200);
     
-    /* shell init && register max30105 fuction */
+    /* shell init && register max30105 function */
     shell_init();
     shell_register("max30105", max30105);
     uart_print("max30105: welcome to libdriver max30105.\n");
@@ -485,7 +485,7 @@ int main(void)
             }
             else if (res == 2)
             {
-                uart_print("max30105: unknow command.\n");
+                uart_print("max30105: unknown command.\n");
             }
             else if (res == 3)
             {
@@ -501,7 +501,7 @@ int main(void)
             }
             else
             {
-                uart_print("max30105: unknow status code.\n");
+                uart_print("max30105: unknown status code.\n");
             }
             uart_flush();
         }

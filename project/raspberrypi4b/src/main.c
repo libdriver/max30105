@@ -90,7 +90,7 @@ void max30105_receive_callback(uint8_t type)
         }
         case MAX30105_INTERRUPT_STATUS_PROX_INT :
         {
-            max30105_interface_debug_print("max30105: irq prox int.\n");
+            max30105_interface_debug_print("max30105: irq proxy int.\n");
             
             break;
         }
@@ -138,7 +138,7 @@ uint8_t max30105(uint8_t argc, char **argv)
         {"times", required_argument, NULL, 1},
         {NULL, 0, NULL, 0},
     };
-    char type[33] = "unknow";
+    char type[33] = "unknown";
     uint32_t times = 3;
     
     /* if no params */
@@ -439,7 +439,7 @@ int main(uint8_t argc, char **argv)
     }
     else
     {
-        max30105_interface_debug_print("max30105: unknow status code.\n");
+        max30105_interface_debug_print("max30105: unknown status code.\n");
     }
 
     return 0;

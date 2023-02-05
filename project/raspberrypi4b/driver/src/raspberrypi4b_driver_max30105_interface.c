@@ -44,7 +44,7 @@
 #define IIC_DEVICE_NAME "/dev/i2c-1"        /**< iic device name */
 
 /**
- * @brief iic device hanble definition
+ * @brief iic device handle definition
  */
 static int gs_fd;                           /**< iic handle */
 
@@ -163,7 +163,7 @@ void max30105_interface_receive_callback(uint8_t type)
         }
         case MAX30105_INTERRUPT_STATUS_PROX_INT :
         {
-            max30105_interface_debug_print("max30105: irq prox int.\n");
+            max30105_interface_debug_print("max30105: irq proxy int.\n");
             
             break;
         }

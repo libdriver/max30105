@@ -1,6 +1,6 @@
 /**
  * @mainpage  LibDriver MAX30105
- * @brief     libdriver max30105 is a full function driver of max30105 and it can run in both MCU and Linux platform.
+ * @brief     LibDriver MAX30105 is a full function driver of MAX30105 and it can run in both MCU and Linux platform.
  * @version   1.0.0
  * @author    Shifeng Li
  *

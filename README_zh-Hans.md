@@ -8,7 +8,7 @@
 
 [![MISRA](https://img.shields.io/badge/misra-compliant-brightgreen.svg)](/misra/README.md) [![API](https://img.shields.io/badge/api-reference-blue.svg)](https://www.libdriver.com/docs/max30105/index.html) [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](/LICENSE)
 
-MAX30105为集成粒子检测模块。包括内部LED、光电检测器、光元件，以及带环境光抑制的低噪声电子电路。MAX30105提供完备的系统方案，简化消防报警灯烟雾检测应用的设计过程。得益于极小的尺寸，MAX30105也可用作移动和可穿戴设备的烟雾检测传感器。MAX30105采用1.8V单电源工作，独立的5.0V电源用于内部LED，器件通过标准I2C兼容接口通信。可通过软件关断模块，待机电流为零，允许电源轨在全部时间保持供电。MAX30105可用于烟雾报警器，楼宇自动化烟雾检测器，移动设备烟雾检测器和移动设备烟雾检测器等。
+MAX30105为集成粒子检测模块，包括内部LED、光电检测器、光元件，以及带环境光抑制的低噪声电子电路。MAX30105提供完备的系统方案，简化消防报警灯烟雾检测应用的设计过程。得益于极小的尺寸，MAX30105也可用作移动和可穿戴设备的烟雾检测传感器。MAX30105采用1.8V单电源工作，独立的5.0V电源用于内部LED，器件通过标准I2C兼容接口通信。可通过软件关断模块，待机电流为零，允许电源轨在全部时间保持供电。MAX30105可用于烟雾报警器，楼宇自动化烟雾检测器，移动设备烟雾检测器和移动设备烟雾检测器等。
 
 LibDriver MAX30105是LibDriver推出的MAX30105的全功能驱动，该驱动提供FIFO读取，ID读取等功能并且它符合MISRA标准。
 

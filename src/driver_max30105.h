@@ -223,64 +223,64 @@ typedef struct max30105_info_s
 
 /**
  * @brief     initialize max30105_handle_t structure
- * @param[in] HANDLE points to a max30105 handle structure
- * @param[in] STRUCTURE is max30105_handle_t
+ * @param[in] HANDLE pointer to a max30105 handle structure
+ * @param[in] STRUCTURE max30105_handle_t
  * @note      none
  */
 #define DRIVER_MAX30105_LINK_INIT(HANDLE, STRUCTURE)         memset(HANDLE, 0, sizeof(STRUCTURE))
 
 /**
  * @brief     link iic_init function
- * @param[in] HANDLE points to a max30105 handle structure
- * @param[in] FUC points to an iic_init function address
+ * @param[in] HANDLE pointer to a max30105 handle structure
+ * @param[in] FUC pointer to an iic_init function address
  * @note      none
  */
 #define DRIVER_MAX30105_LINK_IIC_INIT(HANDLE, FUC)          (HANDLE)->iic_init = FUC
 
 /**
  * @brief     link iic_deinit function
- * @param[in] HANDLE points to a max30105 handle structure
- * @param[in] FUC points to an iic_deinit function address
+ * @param[in] HANDLE pointer to a max30105 handle structure
+ * @param[in] FUC pointer to an iic_deinit function address
  * @note      none
  */
 #define DRIVER_MAX30105_LINK_IIC_DEINIT(HANDLE, FUC)        (HANDLE)->iic_deinit = FUC
 
 /**
  * @brief     link iic_read function
- * @param[in] HANDLE points to a max30105 handle structure
- * @param[in] FUC points to an iic_read function address
+ * @param[in] HANDLE pointer to a max30105 handle structure
+ * @param[in] FUC pointer to an iic_read function address
  * @note      none
  */
 #define DRIVER_MAX30105_LINK_IIC_READ(HANDLE, FUC)          (HANDLE)->iic_read = FUC
 
 /**
  * @brief     link iic_write function
- * @param[in] HANDLE points to a max30105 handle structure
- * @param[in] FUC points to an iic_write function address
+ * @param[in] HANDLE pointer to a max30105 handle structure
+ * @param[in] FUC pointer to an iic_write function address
  * @note      none
  */
 #define DRIVER_MAX30105_LINK_IIC_WRITE(HANDLE, FUC)         (HANDLE)->iic_write = FUC
 
 /**
  * @brief     link delay_ms function
- * @param[in] HANDLE points to a max30105 handle structure
- * @param[in] FUC points to a delay_ms function address
+ * @param[in] HANDLE pointer to a max30105 handle structure
+ * @param[in] FUC pointer to a delay_ms function address
  * @note      none
  */
 #define DRIVER_MAX30105_LINK_DELAY_MS(HANDLE, FUC)          (HANDLE)->delay_ms = FUC
 
 /**
  * @brief     link debug_print function
- * @param[in] HANDLE points to a max30105 handle structure
- * @param[in] FUC points to a debug_print function address
+ * @param[in] HANDLE pointer to a max30105 handle structure
+ * @param[in] FUC pointer to a debug_print function address
  * @note      none
  */
 #define DRIVER_MAX30105_LINK_DEBUG_PRINT(HANDLE, FUC)       (HANDLE)->debug_print = FUC
 
 /**
  * @brief     link receive_callback function
- * @param[in] HANDLE points to a max30105 handle structure
- * @param[in] FUC points to a receive_callback function address
+ * @param[in] HANDLE pointer to a max30105 handle structure
+ * @param[in] FUC pointer to a receive_callback function address
  * @note      none
  */
 #define DRIVER_MAX30105_LINK_RECEIVE_CALLBACK(HANDLE, FUC)  (HANDLE)->receive_callback = FUC
@@ -298,7 +298,7 @@ typedef struct max30105_info_s
 
 /**
  * @brief      get chip's information
- * @param[out] *info points to a max30105 info structure
+ * @param[out] *info pointer to a max30105 info structure
  * @return     status code
  *             - 0 success
  *             - 2 handle is NULL
@@ -308,7 +308,7 @@ uint8_t max30105_info(max30105_info_t *info);
 
 /**
  * @brief     irq handler
- * @param[in] *handle points to a max30105 handle structure
+ * @param[in] *handle pointer to a max30105 handle structure
  * @return    status code
  *            - 0 success
  *            - 1 run failed
@@ -320,7 +320,7 @@ uint8_t max30105_irq_handler(max30105_handle_t *handle);
 
 /**
  * @brief     initialize the chip
- * @param[in] *handle points to a max30105 handle structure
+ * @param[in] *handle pointer to a max30105 handle structure
  * @return    status code
  *            - 0 success
  *            - 1 iic initialization failed
@@ -335,7 +335,7 @@ uint8_t max30105_init(max30105_handle_t *handle);
 
 /**
  * @brief     close the chip
- * @param[in] *handle points to a max30105 handle structure
+ * @param[in] *handle pointer to a max30105 handle structure
  * @return    status code
  *            - 0 success
  *            - 1 iic deinit failed
@@ -348,11 +348,11 @@ uint8_t max30105_deinit(max30105_handle_t *handle);
 
 /**
  * @brief         read the data
- * @param[in]     *handle points to a max30105 handle structure
- * @param[out]    *raw_red points to a red raw data buffer
- * @param[out]    *raw_ir points to an ir raw data buffer
- * @param[out]    *raw_green points to a green raw data buffer
- * @param[in,out] *len points to a length buffer
+ * @param[in]     *handle pointer to a max30105 handle structure
+ * @param[out]    *raw_red pointer to a red raw data buffer
+ * @param[out]    *raw_ir pointer to an ir raw data buffer
+ * @param[out]    *raw_green pointer to a green raw data buffer
+ * @param[in,out] *len pointer to a length buffer
  * @return        status code
  *                - 0 success
  *                - 1 read failed
@@ -366,9 +366,9 @@ uint8_t max30105_read(max30105_handle_t *handle, uint32_t *raw_red, uint32_t *ra
 
 /**
  * @brief      read the temperature
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *raw points to a raw data buffer
- * @param[out] *temp points to a converted temperature buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *raw pointer to a raw data buffer
+ * @param[out] *temp pointer to a converted temperature buffer
  * @return     status code
  *             - 0 success
  *             - 1 read temperature failed
@@ -380,9 +380,9 @@ uint8_t max30105_read_temperature(max30105_handle_t *handle, uint16_t *raw, floa
 
 /**
  * @brief      get the interrupt status
- * @param[in]  *handle points to a max30105 handle structure
- * @param[in]  status is the interrupt status
- * @param[out] *enable points to a bool value buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[in]  status interrupt status
+ * @param[out] *enable pointer to a bool value buffer
  * @return     status code
  *             - 0 success
  *             - 1 get interrupt status failed
@@ -394,9 +394,9 @@ uint8_t max30105_get_interrupt_status(max30105_handle_t *handle, max30105_interr
 
 /**
  * @brief     set the interrupt bool
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] type is the interrupt type
- * @param[in] enable is a bool value
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] type interrupt type
+ * @param[in] enable bool value
  * @return    status code
  *            - 0 success
  *            - 1 set interrupt failed
@@ -408,9 +408,9 @@ uint8_t max30105_set_interrupt(max30105_handle_t *handle, max30105_interrupt_t t
 
 /**
  * @brief      get the interrupt bool
- * @param[in]  *handle points to a max30105 handle structure
- * @param[in]  type is the interrupt type
- * @param[out] *enable points to a bool value buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[in]  type interrupt type
+ * @param[out] *enable pointer to a bool value buffer
  * @return     status code
  *             - 0 success
  *             - 1 get interrupt failed
@@ -422,8 +422,8 @@ uint8_t max30105_get_interrupt(max30105_handle_t *handle, max30105_interrupt_t t
 
 /**
  * @brief     set the fifo write pointer
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] pointer is the written pointer
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] pointer written pointer
  * @return    status code
  *            - 0 success
  *            - 1 set fifo write pointer failed
@@ -436,8 +436,8 @@ uint8_t max30105_set_fifo_write_pointer(max30105_handle_t *handle, uint8_t point
 
 /**
  * @brief      get the fifo write pointer
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *pointer points to a pointer buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *pointer pointer to a pointer buffer
  * @return     status code
  *             - 0 success
  *             - 1 get fifo write pointer failed
@@ -449,8 +449,8 @@ uint8_t max30105_get_fifo_write_pointer(max30105_handle_t *handle, uint8_t *poin
 
 /**
  * @brief     set the fifo overflow counter
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] counter is the overflow counter
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] counter overflow counter
  * @return    status code
  *            - 0 success
  *            - 1 set fifo overflow counter failed
@@ -463,8 +463,8 @@ uint8_t max30105_set_fifo_overflow_counter(max30105_handle_t *handle, uint8_t co
 
 /**
  * @brief      get the fifo overflow counter
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *counter points to a counter buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *counter pointer to a counter buffer
  * @return     status code
  *             - 0 success
  *             - 1 get fifo overflow counter failed
@@ -476,8 +476,8 @@ uint8_t max30105_get_fifo_overflow_counter(max30105_handle_t *handle, uint8_t *c
 
 /**
  * @brief     set the fifo read pointer
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] pointer is the read pointer
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] pointer read pointer
  * @return    status code
  *            - 0 success
  *            - 1 set fifo read pointer failed
@@ -490,8 +490,8 @@ uint8_t max30105_set_fifo_read_pointer(max30105_handle_t *handle, uint8_t pointe
 
 /**
  * @brief      get the fifo read pointer
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *pointer points to a pointer buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *pointer pointer to a pointer buffer
  * @return     status code
  *             - 0 success
  *             - 1 get fifo read pointer failed
@@ -503,8 +503,8 @@ uint8_t max30105_get_fifo_read_pointer(max30105_handle_t *handle, uint8_t *point
 
 /**
  * @brief     set the fifo data
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] data is the fifo data
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] data fifo data
  * @return    status code
  *            - 0 success
  *            - 1 set fifo data failed
@@ -516,8 +516,8 @@ uint8_t max30105_set_fifo_data(max30105_handle_t *handle, uint8_t data);
 
 /**
  * @brief      get the fifo data
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *data points to a fifo data buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *data pointer to a fifo data buffer
  * @return     status code
  *             - 0 success
  *             - 1 get fifo data failed
@@ -529,8 +529,8 @@ uint8_t max30105_get_fifo_data(max30105_handle_t *handle, uint8_t *data);
 
 /**
  * @brief     set the fifo sample averaging
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] sample is the fifo sample averaging
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] sample fifo sample averaging
  * @return    status code
  *            - 0 success
  *            - 1 set fifo sample averaging failed
@@ -542,8 +542,8 @@ uint8_t max30105_set_fifo_sample_averaging(max30105_handle_t *handle, max30105_s
 
 /**
  * @brief      get the fifo sample averaging
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *sample points to a fifo sample averaging buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *sample pointer to a fifo sample averaging buffer
  * @return     status code
  *             - 0 success
  *             - 1 get fifo sample averaging failed
@@ -555,8 +555,8 @@ uint8_t max30105_get_fifo_sample_averaging(max30105_handle_t *handle, max30105_s
 
 /**
  * @brief     enable or disable the fifo roll 
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] enable is a bool value
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] enable bool value
  * @return    status code
  *            - 0 success
  *            - 1 set fifo roll failed
@@ -568,8 +568,8 @@ uint8_t max30105_set_fifo_roll(max30105_handle_t *handle, max30105_bool_t enable
 
 /**
  * @brief      get the fifo roll status
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *enable points to a bool value buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *enable pointer to a bool value buffer
  * @return     status code
  *             - 0 success
  *             - 1 get fifo roll failed
@@ -581,8 +581,8 @@ uint8_t max30105_get_fifo_roll(max30105_handle_t *handle, max30105_bool_t *enabl
 
 /**
  * @brief     set the fifo almost full value
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] value is the fifo almost full value
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] value fifo almost full value
  * @return    status code
  *            - 0 success
  *            - 1 set fifo almost full failed
@@ -595,8 +595,8 @@ uint8_t max30105_set_fifo_almost_full(max30105_handle_t *handle, uint8_t value);
 
 /**
  * @brief      get the fifo almost full value
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *value points to a fifo almost full value buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *value pointer to a fifo almost full value buffer
  * @return     status code
  *             - 0 success
  *             - 1 get fifo almost full failed
@@ -608,8 +608,8 @@ uint8_t max30105_get_fifo_almost_full(max30105_handle_t *handle, uint8_t *value)
 
 /**
  * @brief     set the shutdown
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] enable is a bool value
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] enable bool value
  * @return    status code
  *            - 0 success
  *            - 1 set shutdown failed
@@ -621,8 +621,8 @@ uint8_t max30105_set_shutdown(max30105_handle_t *handle, max30105_bool_t enable)
 
 /**
  * @brief      get the shutdown
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *enable points to a bool value buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *enable pointer to a bool value buffer
  * @return     status code
  *             - 0 success
  *             - 1 get shutdown failed
@@ -634,7 +634,7 @@ uint8_t max30105_get_shutdown(max30105_handle_t *handle, max30105_bool_t *enable
 
 /**
  * @brief     reset the chip
- * @param[in] *handle points to a max30105 handle structure
+ * @param[in] *handle pointer to a max30105 handle structure
  * @return    status code
  *            - 0 success
  *            - 1 reset failed
@@ -646,8 +646,8 @@ uint8_t max30105_reset(max30105_handle_t *handle);
 
 /**
  * @brief     set the mode
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] mode is the chip mode
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] mode chip mode
  * @return    status code
  *            - 0 success
  *            - 1 set mode failed
@@ -659,8 +659,8 @@ uint8_t max30105_set_mode(max30105_handle_t *handle, max30105_mode_t mode);
 
 /**
  * @brief      get the mode
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *mode points to a chip mode buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *mode pointer to a chip mode buffer
  * @return     status code
  *             - 0 success
  *             - 1 get mode failed
@@ -672,8 +672,8 @@ uint8_t max30105_get_mode(max30105_handle_t *handle, max30105_mode_t *mode);
 
 /**
  * @brief     set the particle sensing adc range
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] range is the particle sensing adc range
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] range particle sensing adc range
  * @return    status code
  *            - 0 success
  *            - 1 set particle sensing adc range failed
@@ -685,8 +685,8 @@ uint8_t max30105_set_particle_sensing_adc_range(max30105_handle_t *handle, max30
 
 /**
  * @brief      get the particle sensing adc range
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *range points to a particle sensing adc range buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *range pointer to a particle sensing adc range buffer
  * @return     status code
  *             - 0 success
  *             - 1 get particle sensing adc range failed
@@ -698,8 +698,8 @@ uint8_t max30105_get_particle_sensing_adc_range(max30105_handle_t *handle, max30
 
 /**
  * @brief     set the particle sensing sample rate
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] rate is the particle sensing sample rate
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] rate particle sensing sample rate
  * @return    status code
  *            - 0 success
  *            - 1 set particle sensing sample rate failed
@@ -711,8 +711,8 @@ uint8_t max30105_set_particle_sensing_sample_rate(max30105_handle_t *handle, max
 
 /**
  * @brief      get the particle sensing sample rate
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *rate points to a particle sensing sample rate buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *rate pointer to a particle sensing sample rate buffer
  * @return     status code
  *             - 0 success
  *             - 1 get particle sensing sample rate failed
@@ -724,8 +724,8 @@ uint8_t max30105_get_particle_sensing_sample_rate(max30105_handle_t *handle, max
 
 /**
  * @brief     set the adc resolution
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] resolution is the adc resolution
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] resolution adc resolution
  * @return    status code
  *            - 0 success
  *            - 1 set adc resolution failed
@@ -737,8 +737,8 @@ uint8_t max30105_set_adc_resolution(max30105_handle_t *handle, max30105_adc_reso
 
 /**
  * @brief      get the adc resolution
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *resolution points to an adc resolution buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *resolution pointer to an adc resolution buffer
  * @return     status code
  *             - 0 success
  *             - 1 get adc resolution failed
@@ -750,8 +750,8 @@ uint8_t max30105_get_adc_resolution(max30105_handle_t *handle, max30105_adc_reso
 
 /**
  * @brief     set the red led pulse amplitude
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] amp is the red led pulse amplitude
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] amp red led pulse amplitude
  * @return    status code
  *            - 0 success
  *            - 1 set led red pulse amplitude failed
@@ -763,8 +763,8 @@ uint8_t max30105_set_led_red_pulse_amplitude(max30105_handle_t *handle, uint8_t 
 
 /**
  * @brief      get the red led pulse amplitude
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *amp points to a red led pulse amplitude buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *amp pointer to a red led pulse amplitude buffer
  * @return     status code
  *             - 0 success
  *             - 1 get led red pulse amplitude failed
@@ -776,8 +776,8 @@ uint8_t max30105_get_led_red_pulse_amplitude(max30105_handle_t *handle, uint8_t 
 
 /**
  * @brief     set the ir led pulse amplitude
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] amp is the ir led pulse amplitude
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] amp ir led pulse amplitude
  * @return    status code
  *            - 0 success
  *            - 1 set led ir pulse amplitude failed
@@ -789,8 +789,8 @@ uint8_t max30105_set_led_ir_pulse_amplitude(max30105_handle_t *handle, uint8_t a
 
 /**
  * @brief      get the ir led pulse amplitude
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *amp points to an ir led pulse amplitude buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *amp pointer to an ir led pulse amplitude buffer
  * @return     status code
  *             - 0 success
  *             - 1 get led ir pulse amplitude failed
@@ -802,8 +802,8 @@ uint8_t max30105_get_led_ir_pulse_amplitude(max30105_handle_t *handle, uint8_t *
 
 /**
  * @brief     set the green led pulse amplitude
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] amp is the green led pulse amplitude
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] amp green led pulse amplitude
  * @return    status code
  *            - 0 success
  *            - 1 set led green pulse amplitude failed
@@ -815,8 +815,8 @@ uint8_t max30105_set_led_green_pulse_amplitude(max30105_handle_t *handle, uint8_
 
 /**
  * @brief      get the green led pulse amplitude
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *amp points to a green led pulse amplitude buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *amp pointer to a green led pulse amplitude buffer
  * @return     status code
  *             - 0 success
  *             - 1 get led green pulse amplitude failed
@@ -828,8 +828,8 @@ uint8_t max30105_get_led_green_pulse_amplitude(max30105_handle_t *handle, uint8_
 
 /**
  * @brief     set the proximity led pulse amplitude
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] amp is the proximity led pulse amplitude
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] amp proximity led pulse amplitude
  * @return    status code
  *            - 0 success
  *            - 1 set led proximity pulse amplitude failed
@@ -841,8 +841,8 @@ uint8_t max30105_set_led_proximity_pulse_amplitude(max30105_handle_t *handle, ui
 
 /**
  * @brief      get the proximity led pulse amplitude
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *amp points to a proximity led pulse amplitude buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *amp pointer to a proximity led pulse amplitude buffer
  * @return     status code
  *             - 0 success
  *             - 1 get led proximity pulse amplitude failed
@@ -854,9 +854,9 @@ uint8_t max30105_get_led_proximity_pulse_amplitude(max30105_handle_t *handle, ui
 
 /**
  * @brief     set the led slot
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] slot is the slot number
- * @param[in] led is the led mode
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] slot slot number
+ * @param[in] led led mode
  * @return    status code
  *            - 0 success
  *            - 1 set slot failed
@@ -868,9 +868,9 @@ uint8_t max30105_set_slot(max30105_handle_t *handle, max30105_slot_t slot, max30
 
 /**
  * @brief      get the led slot
- * @param[in]  *handle points to a max30105 handle structure
- * @param[in]  slot is the slot number
- * @param[out] *led points to a led mode buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[in]  slot slot number
+ * @param[out] *led pointer to a led mode buffer
  * @return     status code
  *             - 0 success
  *             - 1 get slot failed
@@ -882,8 +882,8 @@ uint8_t max30105_get_slot(max30105_handle_t *handle, max30105_slot_t slot, max30
 
 /**
  * @brief     enable or disable die temperature
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] enable is a bool value
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] enable bool value
  * @return    status code
  *            - 0 success
  *            - 1 set die temperature failed
@@ -895,8 +895,8 @@ uint8_t max30105_set_die_temperature(max30105_handle_t *handle, max30105_bool_t 
 
 /**
  * @brief      get the die temperature status
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *enable points to a bool value buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *enable pointer to a bool value buffer
  * @return     status code
  *             - 0 success
  *             - 1 get die temperature failed
@@ -908,8 +908,8 @@ uint8_t max30105_get_die_temperature(max30105_handle_t *handle, max30105_bool_t 
 
 /**
  * @brief     set the proximity interrupt threshold
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] threshold is the proximity interrupt threshold
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] threshold proximity interrupt threshold
  * @return    status code
  *            - 0 success
  *            - 1 set proximity interrupt threshold failed
@@ -921,8 +921,8 @@ uint8_t max30105_set_proximity_interrupt_threshold(max30105_handle_t *handle, ui
 
 /**
  * @brief      get the proximity interrupt threshold
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *threshold points to a proximity interrupt threshold buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *threshold pointer to a proximity interrupt threshold buffer
  * @return     status code
  *             - 0 success
  *             - 1 get proximity interrupt threshold failed
@@ -934,9 +934,9 @@ uint8_t max30105_get_proximity_interrupt_threshold(max30105_handle_t *handle, ui
 
 /**
  * @brief      convert the proximity threshold to the register raw data
- * @param[in]  *handle points to a max30105 handle structure
- * @param[in]  adc is the adc range
- * @param[out] *reg points to a register raw buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[in]  adc adc range
+ * @param[out] *reg pointer to a register raw buffer
  * @return     status code
  *             - 0 success
  *             - 2 handle is NULL
@@ -947,9 +947,9 @@ uint8_t max30105_proximity_threshold_convert_to_register(max30105_handle_t *hand
 
 /**
  * @brief      convert the register raw data to the proximity threshold
- * @param[in]  *handle points to a max30105 handle structure
- * @param[in]  reg is the register raw data
- * @param[out] *adc points to an adc range buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[in]  reg register raw data
+ * @param[out] *adc pointer to an adc range buffer
  * @return     status code
  *             - 0 success
  *             - 2 handle is NULL
@@ -960,9 +960,9 @@ uint8_t max30105_proximity_threshold_convert_to_data(max30105_handle_t *handle, 
 
 /**
  * @brief      get the chip id
- * @param[in]  *handle points to a max30105 handle structure
- * @param[out] *revision_id points to a revision id buffer
- * @param[out] *part_id points to a part id buffer
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[out] *revision_id pointer to a revision id buffer
+ * @param[out] *part_id pointer to a part id buffer
  * @return     status code
  *             - 0 success
  *             - 1 get id failed
@@ -985,10 +985,10 @@ uint8_t max30105_get_id(max30105_handle_t *handle, uint8_t *revision_id, uint8_t
 
 /**
  * @brief     set the chip register
- * @param[in] *handle points to a max30105 handle structure
- * @param[in] reg is the iic register address
- * @param[in] *buf points to a data buffer
- * @param[in] len is the data buffer length
+ * @param[in] *handle pointer to a max30105 handle structure
+ * @param[in] reg iic register address
+ * @param[in] *buf pointer to a data buffer
+ * @param[in] len data buffer length
  * @return    status code
  *            - 0 success
  *            - 1 write failed
@@ -1000,10 +1000,10 @@ uint8_t max30105_set_reg(max30105_handle_t *handle, uint8_t reg, uint8_t *buf, u
 
 /**
  * @brief      get the chip register
- * @param[in]  *handle points to a max30105 handle structure
- * @param[in]  reg is the iic register address
- * @param[out] *buf points to a data buffer
- * @param[in]  len is the data buffer length
+ * @param[in]  *handle pointer to a max30105 handle structure
+ * @param[in]  reg iic register address
+ * @param[out] *buf pointer to a data buffer
+ * @param[in]  len data buffer length
  * @return     status code
  *             - 0 success
  *             - 1 read failed

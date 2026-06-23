@@ -283,6 +283,13 @@ uint8_t iic_write(int fd, uint8_t addr, uint8_t reg, uint8_t *buf, uint16_t len)
 {
     struct i2c_rdwr_ioctl_data i2c_rdwr_data;
     struct i2c_msg msgs[1];
+
+    /* check the length */
+    if (len > 4096)
+    {
+        return 1;
+    }
+
     uint8_t buf_send[len + 1];
     
     /* clear ioctl data */
@@ -331,6 +338,13 @@ uint8_t iic_write_address16(int fd, uint8_t addr, uint16_t reg, uint8_t *buf, ui
 {
     struct i2c_rdwr_ioctl_data i2c_rdwr_data;
     struct i2c_msg msgs[1];
+
+    /* check the length */
+    if (len > 4096)
+    {
+        return 1;
+    }
+
     uint8_t buf_send[len + 2];
     
     /* clear ioctl data */

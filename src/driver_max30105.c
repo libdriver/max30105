@@ -375,7 +375,7 @@ uint8_t max30105_irq_handler(max30105_handle_t *handle)
             return 1;                                                                                              /* return error */
         }
         handle->raw = handle->raw | prev1;                                                                         /* set fraction part */
-        handle->temperature = (float)(prev) + (float)(prev1) * 0.0625f;                                            /* set the temperature */
+        handle->temperature = (float)((int8_t)(prev)) + (float)(prev1 & 0x0F) * 0.0625f;                           /* set the temperature */
         handle->finished_flag = 1;                                                                                 /* set flag */
         
         if (handle->receive_callback != NULL)                                                                      /* if receive callback */

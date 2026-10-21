@@ -1,6 +1,6 @@
 var structmax30105__handle__s =
 [
-    [ "buf", "structmax30105__handle__s.html#ad45dc6e8f763732645043792565de06a", null ],
+    [ "buf", "structmax30105__handle__s.html#ae5b98bbfc169e49d173d43a7d7cb273c", null ],
     [ "debug_print", "structmax30105__handle__s.html#a769d5b3a6c14790a0e126e8fe70b384b", null ],
     [ "delay_ms", "structmax30105__handle__s.html#a406c9433252b7366de417b7a60915c81", null ],
     [ "finished_flag", "structmax30105__handle__s.html#a659b449a1ede027fd2c85ed769cc844e", null ],

@@ -1,6 +1,6 @@
 var NAVTREEINDEX1 =
 {
-"structmax30105__handle__s.html#adca3ee7a793bbf510d5267daf0fcf1c5":[0,0,1,0,7],
+"structmax30105__handle__s.html#ae5b98bbfc169e49d173d43a7d7cb273c":[0,0,1,0,0],
 "structmax30105__handle__s.html#af4ef726288b88f51a846483803a1249b":[0,0,1,0,6],
 "structmax30105__handle__s.html#af6963bbad902ca6e43942b48c07986c3":[0,0,1,0,4],
 "structmax30105__handle__s.html#afc1d28cfbce795d6ea954ebe725241f5":[0,0,1,0,11],

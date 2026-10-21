@@ -249,5 +249,5 @@ var NAVTREEINDEX0 =
 "structmax30105__handle__s.html#a769d5b3a6c14790a0e126e8fe70b384b":[0,0,1,0,1],
 "structmax30105__handle__s.html#a7e76fa585608d265c17dcebead34e78f":[0,0,1,0,9],
 "structmax30105__handle__s.html#a8826dd07625f8d90859ce9bd09628d61":[0,0,1,0,5],
-"structmax30105__handle__s.html#ad45dc6e8f763732645043792565de06a":[0,0,1,0,0]
+"structmax30105__handle__s.html#adca3ee7a793bbf510d5267daf0fcf1c5":[0,0,1,0,7]
 };

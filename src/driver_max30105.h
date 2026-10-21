@@ -191,7 +191,7 @@ typedef struct max30105_handle_s
     uint8_t finished_flag;                                                              /**< finished flag */
     uint16_t raw;                                                                       /**< raw */
     float temperature;                                                                  /**< temperature */
-    uint8_t buf[288];                                                                   /**< inner buffer */
+    uint8_t buf[384];                                                                   /**< inner buffer */
 } max30105_handle_t;
 
 /**
